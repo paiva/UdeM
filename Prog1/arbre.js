@@ -68,7 +68,9 @@ function ajouteEnfant(nomParent, nomEnfant)
 // Trouve l'index d'une personne dans personnes[]
 // Prend un parametre comme input: le nom de la personne a trouver
 function trouverPersonne(nomPersonne)
-{
+{   
+    assert(typeof(nomPersonne) == "string");
+    
     for(var i = 0; i < personnes.length; i++)
     {
           if(personnes[i][0] === nomPersonne)
@@ -83,6 +85,9 @@ function trouverPersonne(nomPersonne)
 // Prend un parametre comme input: une liste d'enfants
 function sortEnfant(enfants)
 {
+    
+  assert(typeof(enfants) == "object");
+    
   enfants.sort(function(a,b)
     {
         return a[1] - b[1];
@@ -123,6 +128,8 @@ ajouteEnfant("Isabelle", "Alice");
 // Prend un parametre comme input: le nom du parent
 function quiEnfants(nom)
 {
+  assert(typeof(nom) == "string");
+  
   for(var i = 0; i < personnes.length; i++)
   {
       for(var j = 0; j < personnes.length; j++)
@@ -147,6 +154,9 @@ function quiEnfants(nom)
 // Prend un parametre comme input: le nom du grand-parent
 function quiPetitsEnfants(nom)
 {
+    
+    assert(typeof(nom) == "string");
+    
     var enfants = [];
     enfants.push(quiEnfants(nom));
     
@@ -163,4 +173,4 @@ function quiPetitsEnfants(nom)
 //quiEnfants("Isabelle"); // Should return: ["Alice","Orianne"]
 //quiEnfants("Mathilde"); // Should return: ["Karine","Kaliste","Sophie"]
 //quiEnfants("Marge"); // Should return: ["Celine","Wendy","Caroline"]
-//quiPetitsEnfants("Sarah"); // Should return: ["Karine", "Celine","Wendy","Kaliste", "Sophie", "Caroline"]
+quiPetitsEnfants("Sarah"); // Should return: ["Karine", "Celine","Wendy","Kaliste", "Sophie", "Caroline"]
