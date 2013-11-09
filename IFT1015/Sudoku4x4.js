@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////
 //
-// Devoir 1: Sododu.js
+// Devoir 1: Sododku.js
 // Auteurs: Olga Prezh (ID) et Santiago Paiva (1066417)
 // Date: 21 Novembre 2013
 //  
