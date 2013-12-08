@@ -7,9 +7,10 @@
 //////////////////////////////////////////
 
 /*
- * Constructeur pour Point
- * Permet de stocker les coordonnées d'un point dans un espace à deux dimensions (x,y),
- * @param {Number} x- l'abscisse du point à représenter
+ * Creates an instance of Point
+ * @constructor
+ *
+ * @param {Number} x - l'abscisse du point à représenter
  * @param {Number} y - l'ordonnée du point à représenter
  */
 var Point = function(x,y)
@@ -19,13 +20,41 @@ var Point = function(x,y)
 };
 
 
-// Constructeur pour Droite
-// Permet de représenter une droite (y=ax+b)
-var Droite = function(a,b)
+/*
+ * Creates an instance of Droite
+ * @constructor
+ *
+ * @param {Arguments} Soit (a,b) ou ("y=ax+b")
+ *
+ */
+var Droite = function(arguments)
 {
-	this.a = a;
-	this.b = b;
+	if(arguments.length == 1)
+	{
+		this.a = arguments.charAt(2);
+		this.b = arguments.charAt(5);
+	}
+	
+	else if(arguments.length ==2)
+	{
+		this.a = arguments[0];
+		this.b = arguments[1];
+	}
+	
+	return y=a*x+b; 
 };
+
+Point.prototype.getX = function()
+{
+	return this.x;
+};
+
+
+Point.prototype.getY = function()
+{
+	return this.y;
+};
+
 
 
 
