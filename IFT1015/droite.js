@@ -8,17 +8,43 @@ var Point = function(x,y)
 
 var Droite = function(a,b)
 {
-	if(arguments.length == 1)
+    this.sign = "+";
+    
+    if(arguments.length == 1)
     {
-     	if(arguments[0].length == 6)
+     	if(arguments[0].length == 7)
+        {
+            if(arguments[0].charAt(2) == "-")
+                this.a = -parseInt(arguments[0].charAt(3));
+            if(arguments[0].charAt(5) == "-")
+                this.b = parseInt(arguments[0].charAt(6));
+            	this.sign = "-";
+        }  
+        else if(arguments[0].length == 6)
         {    
         	this.a = parseInt(arguments[0].charAt(2));
         	this.b = parseInt(arguments[0].charAt(5));
         }
+        else if(arguments[0].length == 5)
+        {    
+        	if(arguments[0].charAt(2) == "-")
+            {    
+                this.a = -parseInt(arguments[0].charAt(3));
+            	this.b = 0;
+            }
+        }
         else if(arguments[0].length == 4)
         {    
-        	this.a = parseInt(arguments[0].charAt(2));
-        	this.b = 0;
+        	if(arguments[0].charAt(2) == "-")
+            {    
+                this.a = 0;
+            	this.b = parseInt(arguments[0].charAt(3));
+            	this.sign = "-";
+            }
+            else
+            {this.a = parseInt(arguments[0].charAt(2));
+        		this.b = 0;
+            }
         }  
         else
         {
@@ -43,7 +69,7 @@ var Droite = function(a,b)
 
 Droite.prototype.toString = function()
 {
-  return "y=" + this.a + "x+" + this.b;   
+  return "y=" + this.a + "x" + this.sign + this.b;   
 };
 
 Droite.prototype.getY = function(x)
