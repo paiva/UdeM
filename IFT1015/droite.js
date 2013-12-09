@@ -39,9 +39,12 @@ var Droite = function(a,b)
      	this.a = a;
         this.b = b; 
     }
-    return "y=" + a + "*x" + b;
 };
 
+Droite.prototype.toString = function()
+{
+  return "y=" + this.a + "x+" + this.b;   
+};
 
 Droite.prototype.getY = function(x)
 {
@@ -60,9 +63,6 @@ Droite.prototype.isPerpendicularWith = function(d)
   	return true;   
 };
 
-var d1 = new Droite(2,3);
-print(d1);
-
 var tests = function () {
 
     var d1 = new Droite (2,3);
@@ -77,13 +77,8 @@ var tests = function () {
     for (var i=0; i<s.length; i++)
     {
 		t.push(new Droite(s[i]));
-        print(t);
-        print(t.length-1);
-		//print("string constructor: ", s[i],t[t.length-1]);
+		print("string constructor: ", s[i]," , ",t[t.length-1]);
     };
-
-    //for (i=0; i < t.length; ++i)
-	//print (t[i],"en x=2 :",t[i].getY(2)); 
 };    
 
-//tests();
+tests();
