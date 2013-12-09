@@ -1,66 +1,89 @@
-//////////////////////////////////////////
-//
-// Ex 7 : OOP 
-// Auteur: Santiago Paiva (1066417)
-// Date de remise: Dec 12, 2013
-// 
-//////////////////////////////////////////
+// Enter JavaScript code here
 
-/*
- * Creates an instance of Point
- * @constructor
- *
- * @param {Number} x - l'abscisse du point à représenter
- * @param {Number} y - l'ordonnée du point à représenter
- */
 var Point = function(x,y)
 {
 	this.x = x;
 	this.y = y;
 };
 
-
-/*
- * Creates an instance of Droite
- * @constructor
- *
- * @param {Arguments} Soit (a,b) ou ("y=ax+b")
- *
- */
-var Droite = function(arguments)
+var Droite = function(a,b)
 {
 	if(arguments.length == 1)
-	{
-		this.a = arguments.charAt(2);
-		this.b = arguments.charAt(5);
-	}
-	
-	else if(arguments.length ==2)
-	{
-		this.a = arguments[0];
-		this.b = arguments[1];
-	}
-	
-	return y=a*x+b; 
+    {
+     	if(arguments[0].length == 6)
+        {    
+        	this.a = parseInt(arguments[0].charAt(2));
+        	this.b = parseInt(arguments[0].charAt(5));
+        }
+        else if(arguments[0].length == 4)
+        {    
+        	this.a = parseInt(arguments[0].charAt(2));
+        	this.b = 0;
+        }  
+        else
+        {
+         	if(arguments[0].charAt(2) == "x")
+            {
+             	this.a = 1;
+                this.b = 0;
+            }  
+            else
+            {    
+            	this.a = 0;
+            	this.b = parseInt(arguments[0].charAt(2));
+            }
+        }
+    }
+    else if(arguments.length == 2)
+    {
+     	this.a = a;
+        this.b = b; 
+    }
+    return "y=" + a + "*x" + b;
 };
 
-Point.prototype.getX = function()
+
+Droite.prototype.getY = function(x)
 {
-	return this.x;
+  	return this.a*x + this.b;  
 };
 
-
-Point.prototype.getY = function()
+//@type boolean
+Droite.prototype.passePar = function(p)
 {
-	return this.y;
+	return true;
 };
 
+//@type boolean
+Droite.prototype.isPerpendicularWith = function(d)
+{
+  	return true;   
+};
 
+var d1 = new Droite(2,3);
+print(d1);
 
+var tests = function () {
 
+    var d1 = new Droite (2,3);
+    var d2 = new Droite (-2,-3);
+    var d3 = new Droite (0,3);
+    var d4 = new Droite (0,-3);
+    var d5 = new Droite (0.5,2);
+ 
+    var t = [d1,d2,d3,d4,d5];
+    var s = ["y=3x+5", "y=5", "y=-7","y=-3x", "y=3x", "y=-3x-2", "y=0", "y=3x+2", "y=0x+0", "y=0x"];;
+    
+    for (var i=0; i<s.length; i++)
+    {
+		t.push(new Droite(s[i]));
+        print(t);
+        print(t.length-1);
+		//print("string constructor: ", s[i],t[t.length-1]);
+    };
 
+    //for (i=0; i < t.length; ++i)
+	//print (t[i],"en x=2 :",t[i].getY(2)); 
+};    
 
-
-
-
-
+//tests();
