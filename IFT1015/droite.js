@@ -75,6 +75,13 @@ var Droite = function(a,b)
     }
 };
 
+Droite.prototype.getA = function()
+{
+	return this.a;    
+};
+
+
+
 Droite.prototype.toString = function()
 {
   return "y=" + this.a + "x" + this.sign + this.b;   
@@ -111,7 +118,14 @@ Droite.prototype.passePar = function(p)
 //@type boolean
 Droite.prototype.isPerpendicularWith = function(d)
 {
-  	return true;   
+  	
+    var a1 = this.a; 
+    //print(a1);
+    var a2 = d.getA(); 
+    //print(a2);
+    if(a1 * a2 == -1)
+    	return true;
+    return false;
 };
 
 var tests = function () {
@@ -139,8 +153,13 @@ var tests = function () {
     var p1 = new Point(2,0);
     var p2 = new Point(-2,1);
     
-    print (d1, " passe par ", p1, " : " , d1.passePar(p1));
-    print (d2, " passe par ", p2, " : " , d2.passePar(p2));
+    //print (d1, " passe par ", p1, " : " , d1.passePar(p1));
+    //print (d2, " passe par ", p2, " : " , d2.passePar(p2));
+
+    for (var i=0; i < t.length; ++i)
+		for (var j=i; j < t.length; ++j)
+	    	if (t[i].isPerpendicularWith(t[j]))
+			print(t[i], " est perpendiculaire avec ", t[j]);
 };    
 
 tests();
