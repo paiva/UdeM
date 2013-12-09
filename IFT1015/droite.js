@@ -8,7 +8,7 @@ var Point = function(x,y)
 
 var Droite = function(a,b)
 {
-    this.sign = "+";
+    this.sign = "";
     
     if(arguments.length == 1)
     {
@@ -17,13 +17,14 @@ var Droite = function(a,b)
             if(arguments[0].charAt(2) == "-")
                 this.a = -parseInt(arguments[0].charAt(3));
             if(arguments[0].charAt(5) == "-")
-                this.b = parseInt(arguments[0].charAt(6));
-            	this.sign = "-";
+                this.b = -parseInt(arguments[0].charAt(6));
+            	
         }  
         else if(arguments[0].length == 6)
         {    
         	this.a = parseInt(arguments[0].charAt(2));
         	this.b = parseInt(arguments[0].charAt(5));
+            this.sign = "+";
         }
         else if(arguments[0].length == 5)
         {    
@@ -31,6 +32,7 @@ var Droite = function(a,b)
             {    
                 this.a = -parseInt(arguments[0].charAt(3));
             	this.b = 0;
+                this.sign = "+";
             }
         }
         else if(arguments[0].length == 4)
@@ -38,12 +40,13 @@ var Droite = function(a,b)
         	if(arguments[0].charAt(2) == "-")
             {    
                 this.a = 0;
-            	this.b = parseInt(arguments[0].charAt(3));
-            	this.sign = "-";
+            	this.b = -parseInt(arguments[0].charAt(3));
             }
             else
-            {this.a = parseInt(arguments[0].charAt(2));
+            {
+                this.a = parseInt(arguments[0].charAt(2));
         		this.b = 0;
+                this.sign = "+";
             }
         }  
         else
@@ -52,18 +55,23 @@ var Droite = function(a,b)
             {
              	this.a = 1;
                 this.b = 0;
+                this.sign = "+";
             }  
             else
             {    
             	this.a = 0;
             	this.b = parseInt(arguments[0].charAt(2));
+                this.sign = "+";
             }
         }
     }
     else if(arguments.length == 2)
     {
-     	this.a = a;
-        this.b = b; 
+     	//y=-2x-3
+        this.a = a;
+        this.b = b;
+        if(b > 0)
+            this.sign = "+";
     }
 };
 
@@ -104,7 +112,12 @@ var tests = function () {
     {
 		t.push(new Droite(s[i]));
 		print("string constructor: ", s[i]," , ",t[t.length-1]);
-    };
+    }
+    
+    for (var i=0; i<t.length; i++)
+    {    
+		print (t[i]," en x=2 :",t[i].getY(2)); 
+    }
 };    
 
 tests();
