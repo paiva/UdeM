@@ -85,10 +85,27 @@ Droite.prototype.getY = function(x)
   	return this.a*x + this.b;  
 };
 
+Point.prototype.getX = function()
+{
+  	return this.x;  
+};
+
+Point.prototype.getY = function()
+{
+  	return this.y;  
+};
+
+Point.prototype.toString = function()
+{
+ 	return "(" + this.x +"," + this.y + ")";   
+};
+
 //@type boolean
 Droite.prototype.passePar = function(p)
 {
-	return true;
+	if(p.getY() == this.a * p.getX() + this.b)
+    	return true; 
+    return false; 
 };
 
 //@type boolean
@@ -111,13 +128,19 @@ var tests = function () {
     for (var i=0; i<s.length; i++)
     {
 		t.push(new Droite(s[i]));
-		print("string constructor: ", s[i]," , ",t[t.length-1]);
+		//print("string constructor: ", s[i]," , ",t[t.length-1]);
     }
     
     for (var i=0; i<t.length; i++)
     {    
-		print (t[i]," en x=2 :",t[i].getY(2)); 
+		//print (t[i]," en x=2 :",t[i].getY(2)); 
     }
+    
+    var p1 = new Point(2,0);
+    var p2 = new Point(-2,1);
+    
+    print (d1, " passe par ", p1, " : " , d1.passePar(p1));
+    print (d2, " passe par ", p2, " : " , d2.passePar(p2));
 };    
 
 tests();
