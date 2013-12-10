@@ -1,6 +1,7 @@
 ////////////////////////////////////////////////////////
 //
-// Ex 7: Object-Oriented Javascript
+// IFT1015 - Programmation 1
+// Ex 7: Object-Oriented Javascript (droite.js)
 // Auteur: Santiago Paiva (1066417)
 // Date de remise: Dec 12, 2013
 //
@@ -17,6 +18,7 @@ var Point = function(x,y)
 
 /*
  * @constructor Constructeur pour Droite
+ * @param Soit deux valuers (a,b) ou string du type "y=ax+b"
  */
  var Droite = function(a,b)
 {
