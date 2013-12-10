@@ -8,33 +8,47 @@ var Point = function(x,y)
 
 var Droite = function(a,b)
 {
-    this.sign = "";
-    
+    // Convention interne
+	this.sign = "";
+	
+    // Pour 1 argument: y=ax+b
     if(arguments.length == 1)
     {
-     	if(arguments[0].length == 7)
+     	// type: y=-ax+b ou y=-ax-b
+		if(arguments[0].length == 7)
         {
             if(arguments[0].charAt(2) == "-")
                 this.a = -parseInt(arguments[0].charAt(3));
             if(arguments[0].charAt(5) == "-")
                 this.b = -parseInt(arguments[0].charAt(6));
             	
-        }  
+        } 
+		//	type: y=ax+b ou y=ax-b
         else if(arguments[0].length == 6)
         {    
         	this.a = parseInt(arguments[0].charAt(2));
         	this.b = parseInt(arguments[0].charAt(5));
             this.sign = "+";
         }
+		// type: y=x+b ou y=x-b ou y=-ax
         else if(arguments[0].length == 5)
         {    
-        	if(arguments[0].charAt(2) == "-")
+        	if(arguments[0].charAt(2) == "x")
+			{
+				this.a = 1; 
+				if(arguments[0].charAt(3) == "-")
+					this.b = -parseInt(arguments[0].charAt(4));
+				this.b = parseInt(arguments[0].charAt(4));
+				this.sign = "+";
+			}
+			else if(arguments[0].charAt(2) == "-")
             {    
                 this.a = -parseInt(arguments[0].charAt(3));
             	this.b = 0;
                 this.sign = "+";
             }
         }
+		// type: y=ax y=-b
         else if(arguments[0].length == 4)
         {    
         	if(arguments[0].charAt(2) == "-")
@@ -48,7 +62,8 @@ var Droite = function(a,b)
         		this.b = 0;
                 this.sign = "+";
             }
-        }  
+        }
+		// type: y=x ou y=b
         else
         {
          	if(arguments[0].charAt(2) == "x")
@@ -65,9 +80,9 @@ var Droite = function(a,b)
             }
         }
     }
-    else if(arguments.length == 2)
+    // Pour 2 arguments: (a,b)
+	else if(arguments.length == 2)
     {
-     	//y=-2x-3
         this.a = a;
         this.b = b;
         if(b > 0)
@@ -75,39 +90,68 @@ var Droite = function(a,b)
     }
 };
 
+/*
+ * @return a  
+ */
 Droite.prototype.getA = function()
 {
 	return this.a;    
 };
 
+/*
+ * @return b  
+ */
+Droite.prototype.getB = function()
+{
+	return this.b;    
+};
 
-
+/*
+ * @return y=ax+b  
+ */
 Droite.prototype.toString = function()
 {
   return "y=" + this.a + "x" + this.sign + this.b;   
 };
 
+/*
+ * @param x 
+ * @return a*x+b  
+ */
 Droite.prototype.getY = function(x)
 {
   	return this.a*x + this.b;  
 };
 
+/*
+ * @return x  
+ */
 Point.prototype.getX = function()
 {
   	return this.x;  
 };
 
+/*
+ * @return y  
+ */
 Point.prototype.getY = function()
 {
   	return this.y;  
 };
 
+/*
+ * @return (x,y)  
+ */
 Point.prototype.toString = function()
 {
  	return "(" + this.x +"," + this.y + ")";   
 };
 
-//@type boolean
+/*
+ * @type boolean
+ * @param p un point
+ * @return true si la droite passe par le point
+ */
 Droite.prototype.passePar = function(p)
 {
 	if(p.getY() == this.a * p.getX() + this.b)
@@ -115,14 +159,15 @@ Droite.prototype.passePar = function(p)
     return false; 
 };
 
-//@type boolean
+/*
+ * @type boolean
+ * @param d une droite
+ * @return true si les deux droites sont perpendiculaires 
+ */
 Droite.prototype.isPerpendicularWith = function(d)
-{
-  	
+{	
     var a1 = this.a; 
-    //print(a1);
     var a2 = d.getA(); 
-    //print(a2);
     if(a1 * a2 == -1)
     	return true;
     return false;
@@ -142,19 +187,19 @@ var tests = function () {
     for (var i=0; i<s.length; i++)
     {
 		t.push(new Droite(s[i]));
-		//print("string constructor: ", s[i]," , ",t[t.length-1]);
+		print("string constructor: ", s[i]," , ",t[t.length-1]);
     }
     
     for (var i=0; i<t.length; i++)
     {    
-		//print (t[i]," en x=2 :",t[i].getY(2)); 
+		print (t[i]," en x=2 :",t[i].getY(2)); 
     }
     
     var p1 = new Point(2,0);
     var p2 = new Point(-2,1);
     
-    //print (d1, " passe par ", p1, " : " , d1.passePar(p1));
-    //print (d2, " passe par ", p2, " : " , d2.passePar(p2));
+    print (d1, " passe par ", p1, " : " , d1.passePar(p1));
+    print (d2, " passe par ", p2, " : " , d2.passePar(p2));
 
     for (var i=0; i < t.length; ++i)
 		for (var j=i; j < t.length; ++j)
