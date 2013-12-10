@@ -1,12 +1,24 @@
-// Enter JavaScript code here
+////////////////////////////////////////////////////////
+//
+// Ex 7: Object-Oriented Javascript
+// Auteur: Santiago Paiva (1066417)
+// Date de remise: Dec 12, 2013
+//
+////////////////////////////////////////////////////////
 
+/*
+ * @constructor Constructeur pour Point
+ */
 var Point = function(x,y)
 {
 	this.x = x;
 	this.y = y;
 };
 
-var Droite = function(a,b)
+/*
+ * @constructor Constructeur pour Droite
+ */
+ var Droite = function(a,b)
 {
     // Convention interne
 	this.sign = "";
